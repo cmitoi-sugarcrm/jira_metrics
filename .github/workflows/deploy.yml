@@ -23,7 +23,7 @@ jobs:
       - name: Debug SSH Connection
         run: |
           echo "Trying to SSH into: ${{ secrets.EC2_HOST }}"
-          ssh -v -i ~/.ssh/id_rsa ec2-user${{ secrets.EC2_HOST }} "echo '✅ Connected to EC2!'"
+          ssh -v -i ~/.ssh/id_rsa ec2-user@${{ secrets.EC2_HOST }} "echo '✅ Connected to EC2!'"
 
       - name: Deploy Code to EC2
         run: |
