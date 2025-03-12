@@ -8,6 +8,7 @@ WORKDIR /app
 COPY package.json ./
 
 # Install dependencies before copying the full source code
+RUN npm cache clean --force
 RUN npm install --omit=dev
 
 # Copy the rest of the backend code

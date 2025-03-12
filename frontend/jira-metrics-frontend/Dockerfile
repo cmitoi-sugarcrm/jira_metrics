@@ -8,6 +8,7 @@ WORKDIR /app
 COPY package.json ./
 
 # Install dependencies
+RUN npm cache clean --force
 RUN npm install
 
 # Copy the entire frontend project
