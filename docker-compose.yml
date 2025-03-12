@@ -23,7 +23,7 @@ services:
       - ./frontend/jira-metrics-frontend:/app
       - /app/node_modules
     environment:
-      - REACT_APP_API_BASE_URL=http://localhost:5002/api
+      - REACT_APP_API_BASE_URL=/api
     networks:
       - jira-network
     depends_on:
