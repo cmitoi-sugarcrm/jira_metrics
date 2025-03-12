@@ -1,0 +1,43 @@
+services:
+  backend:
+    build: ./server
+    container_name: jira-backend
+    ports:
+      - "5002:5002"
+    volumes:
+      - ./server:/app
+    env_file:
+      - ./server/.env
+    networks:
+      - jira-network
+    depends_on:
+      - mongo
+
+  frontend:
+    build: ./frontend/jira-metrics-frontend
+    container_name: jira-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/jira-metrics-frontend:/app
+    environment:
+      - REACT_APP_API_BASE_URL=http://localhost:5002/api
+    networks:
+      - jira-network
+    depends_on:
+      - backend
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - jira-network
+    volumes:
+      - mongo-data:/data/db
+      - ./server/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+networks:
+  jira-network:
+volumes:
+  mongo-data:
