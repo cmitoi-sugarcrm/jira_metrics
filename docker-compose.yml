@@ -6,6 +6,7 @@ services:
       - "5002:5002"
     volumes:
       - ./server:/app
+      - /app/node_modules
     env_file:
       - ./server/.env
     networks:
@@ -20,6 +21,7 @@ services:
       - "3000:3000"
     volumes:
       - ./frontend/jira-metrics-frontend:/app
+      - /app/node_modules
     environment:
       - REACT_APP_API_BASE_URL=http://localhost:5002/api
     networks:

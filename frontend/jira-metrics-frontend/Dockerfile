@@ -1,5 +1,5 @@
 # Use official Node.js image
-FROM node:18
+FROM node:22
 
 # Set working directory
 WORKDIR /app
@@ -12,6 +12,9 @@ RUN npm install
 
 # Copy the entire frontend project
 COPY . .
+
+# Ensure node_modules is correctly linked inside the container
+RUN ln -s /app/node_modules node_modules
 
 # Build the frontend
 RUN npm run build
