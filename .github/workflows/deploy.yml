@@ -28,7 +28,7 @@ jobs:
       - name: Deploy Code to EC2
         run: |
           ssh -i ~/.ssh/id_rsa ec2-user@${{ secrets.EC2_HOST }} << 'EOF'
-            cd /home/ec2-user/jira_tracker  # Change to your actual path
+            cd /home/ec2-user/jira_tracker/jira_metrics  # Change to your actual path
             git pull origin main
             docker-compose down
             docker-compose up --build -d
